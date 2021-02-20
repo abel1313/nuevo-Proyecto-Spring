@@ -48,8 +48,12 @@ public class Producto extends Base
 		   	@NotNull
 			 private double precioProducto;
 		   	
-		   	@ManyToOne( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-		   	@JoinColumn(name = "proveedor_Id", nullable = false)
+//		   	@ManyToOne( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//		   	@JoinColumn(name = "proveedor_Id", nullable = false)
+//		   	private Proveedor proveedor;
+		   	
+		   	@ManyToOne( cascade = CascadeType.MERGE)
+		   	@JoinColumn(name = "proveedor_id")
 		   	private Proveedor proveedor;
 
 

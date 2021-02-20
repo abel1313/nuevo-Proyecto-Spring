@@ -32,6 +32,12 @@ implements IProductoService
 		}
 	}
 
+	@Override
+	public boolean codigoBarra(String codigo) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	
 
 

@@ -27,5 +27,4 @@ public class Marca extends Base
 	private String nombre_Marca;
 	
 
-
 }

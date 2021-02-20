@@ -1,5 +1,6 @@
 package com.ferreteria.nuevo.proyecto.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -39,6 +40,14 @@ public class Proveedor extends Base
 	 @JoinColumn( name = "proveedor_id")
 	 private List<Marca>listamarcas;
 	  
+//	  @OneToMany(mappedBy = "proveedor")
+//	  private Collection<Producto> twitterAccounts = new ArrayList<Producto>();
 	  
+//	  @OneToMany(
+//			  cascade = CascadeType.ALL, 
+//			  orphanRemoval = true)
+//	  @JoinColumn(name = "proveedor_id")
+//	 private List<Marca>listamarcas;
+//	  
 
 }
