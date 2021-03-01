@@ -40,7 +40,7 @@ implements IBaseController<E, Integer>{
 		}
 	}
 
-	@PostMapping("     console.log(res);xc")
+	@PostMapping("")
 	//@ResponseBody
 	@Override
 	public ResponseEntity<?> save(@RequestBody E entity) {

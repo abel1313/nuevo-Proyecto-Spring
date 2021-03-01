@@ -38,15 +38,38 @@ extends BaseControllerImpl<Producto, ProductoServiceImpl>
 	}
 	
 	@GetMapping(path = "/buscarCodigo/{codigo}")
-	public ResponseEntity<?> guardarProducto(@PathParam("codigo") String codigo) {
+	public ResponseEntity<?> guardarProducto(@PathVariable("codigo") String codigo) {
 		try {
-			
-			return ResponseEntity.status(HttpStatus.OK).body(iProductoService.addProducto(producto));
+			System.err.println("Codigo barra "+ codigo);
+			return ResponseEntity.status(HttpStatus.OK).body(iProductoService.codigoBarra(codigo));
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 					.body("{'error': 'Por favor intente mas tarde "+e.getMessage()+" '}");
 		}
 	}
+	
+	@GetMapping(path = "/buscarProductos/{codigo}")
+	public ResponseEntity<?> buscarProductoByCodigoOrNombre(@PathVariable("codigo") String codigo) {
+		try {
+			
+			if(codigo.equals("1"))
+			{
+				System.err.println("Entro en 1");
+				return ResponseEntity.status(HttpStatus.OK).body(iProductoService.findAll());
+			}else
+			{
+				System.err.println("Entro en 0");
+				return ResponseEntity.status(HttpStatus.OK).body(iProductoService.buscarByCodigoOrNombreService(codigo));
+			}
+			
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body("{'error': 'Por favor intente mas tarde "+e.getMessage()+" '}");
+		}
+	}
+	
+	
+	
 	
 
 }

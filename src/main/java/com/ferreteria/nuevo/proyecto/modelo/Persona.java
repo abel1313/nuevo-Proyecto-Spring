@@ -22,6 +22,8 @@ import lombok.ToString;
 public class Persona extends Base
 {
 
+	private static final long serialVersionUID = 1L;
+
 	@Column(name = "nombre_Persona")
 	private String nombrePersona;
 	

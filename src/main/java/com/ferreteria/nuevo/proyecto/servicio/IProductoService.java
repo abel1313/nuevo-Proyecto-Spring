@@ -1,5 +1,7 @@
 package com.ferreteria.nuevo.proyecto.servicio;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -12,6 +14,8 @@ public interface IProductoService extends IBaseService<Producto, Integer>
 	public Producto addProducto(@RequestBody Producto producto)throws Exception;
 	
 	public boolean codigoBarra(@PathVariable String codigo)throws Exception;
+	
+	public List<Producto> buscarByCodigoOrNombreService(@PathVariable String codigo)throws Exception;
 	
 
 }
