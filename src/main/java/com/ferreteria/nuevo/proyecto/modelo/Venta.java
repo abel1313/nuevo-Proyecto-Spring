@@ -42,10 +42,19 @@ public class Venta extends Base
 	@Column( name = "fecha_Venta")
 	private Date fechaVenta;
 	
-	 @OneToMany( cascade = CascadeType.PERSIST)
-	 @JoinColumn( name = "venta_Id")
-	 private List<DetalleVenta> detalle;
-	
+//	 @OneToMany( cascade = CascadeType.PERSIST)
+//	 @JoinColumn( name = "venta_Id")
+//	 private List<DetalleVenta> detalle;
+
+	@ManyToMany(cascade = {
+		    CascadeType.PERSIST,
+		    CascadeType.MERGE
+		})
+		@JoinTable(name = "detalleventa",
+		    joinColumns = @JoinColumn(name = "venta_id"),
+		    inverseJoinColumns = @JoinColumn(name = "producto_id")
+		)
+	private List<Producto>listaProductos= new ArrayList<Producto>();
 
 	 
 	 @OneToOne

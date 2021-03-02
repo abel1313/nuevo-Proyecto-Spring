@@ -34,11 +34,11 @@ public class VentaController extends BaseControllerImpl<Venta, VentaServiceImpl>
 	public ResponseEntity<?> save(@RequestBody Venta venta) 
 	{
 
-
-
-		List<DetalleVenta> det = venta.getDetalle().stream().filter(item-> item.getId() != 0).collect(Collectors.toList());
-System.err.println(det);
-System.err.println(det.size());
+System.err.println(venta);
+		
+	//	List<DetalleVenta> det = venta.getDetalle().stream().filter(item-> item.getId() != 0).collect(Collectors.toList());
+//System.err.println(det);
+//System.err.println(det.size());
 
 
 
@@ -67,16 +67,10 @@ System.err.println(det.size());
 //			e1.printStackTrace();
 //		}
 //		
-try {
-	Venta ve = IVentaService.addVenta(venta);
-	System.err.println(ve);
-} catch (Exception e1) {
-	// TODO Auto-generated catch block
-	e1.printStackTrace();
-}
+
 
 		try {
-			return ResponseEntity.status(HttpStatus.OK).body("");
+			return ResponseEntity.status(HttpStatus.OK).body(IVentaService.save(venta));
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{'error': 'Por favor intente mas tarde'}");
 		}
