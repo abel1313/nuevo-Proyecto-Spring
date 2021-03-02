@@ -42,21 +42,12 @@ public class Venta extends Base
 	@Column( name = "fecha_Venta")
 	private Date fechaVenta;
 	
-//	 @OneToMany( cascade = CascadeType.PERSIST)
-//	 @JoinColumn( name = "venta_Id")
-//	 private List<DetalleVenta> detalle;
-
-	@ManyToMany(cascade = {
-		    CascadeType.PERSIST,
-		    CascadeType.MERGE
-		})
-		@JoinTable(name = "detalleventa",
-		    joinColumns = @JoinColumn(name = "venta_id"),
-		    inverseJoinColumns = @JoinColumn(name = "producto_id")
-		)
-	private List<Producto>listaProductos= new ArrayList<Producto>();
-
-	 
+	// @OneToMany( fetch = FetchType.LAZY, cascade = CascadeType.MERGE, mappedBy = "venta") de esta forma solo agrega venta pero al buscar las ventas sale error
+	
+	@OneToMany( fetch = FetchType.LAZY)
+	@JoinColumn( name = "venta_id" )
+	 private List<DetalleVenta> detalle;
+	
 	 @OneToOne
 	 @JoinColumn( name = "cliente_Id")
 	 private Cliente cliente;

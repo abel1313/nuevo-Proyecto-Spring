@@ -1,7 +1,9 @@
 package com.ferreteria.nuevo.proyecto.modelo;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -31,11 +33,9 @@ public class DetalleVenta  extends Base
 	
 	@Column( name = "precio_Detalle_Venta")
 	private double precioDetalleVenta;
+
+
 	
-//	 @ManyToOne
-//	 @JoinColumn( name = "venta_Id")
-//	 private Venta venta;
-	 
 	 @OneToOne
 	 @JoinColumn( name = "producto_Id")
 	 private Producto producto;
