@@ -10,6 +10,7 @@ import com.ferreteria.nuevo.proyecto.modelo.Base;
 
 
 @NoRepositoryBean
-public interface BaseRepository <T extends Base, ID extends Serializable> extends JpaRepository<T, ID>{
+public interface BaseRepository <T extends Base, ID extends Serializable> extends JpaRepository<T, ID>
+{
 
 }

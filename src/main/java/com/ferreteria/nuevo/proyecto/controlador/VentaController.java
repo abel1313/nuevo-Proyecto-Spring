@@ -1,12 +1,10 @@
 package com.ferreteria.nuevo.proyecto.controlador;
 
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ferreteria.nuevo.proyecto.DTO.DTOVentaPagos;
+import com.ferreteria.nuevo.proyecto.modelo.Cliente;
 import com.ferreteria.nuevo.proyecto.modelo.DetalleVenta;
+import com.ferreteria.nuevo.proyecto.modelo.Usuario;
 import com.ferreteria.nuevo.proyecto.modelo.Venta;
+import com.ferreteria.nuevo.proyecto.servicio.IDetalleVentaService;
 import com.ferreteria.nuevo.proyecto.servicio.IVentaService;
 import com.ferreteria.nuevo.proyecto.servicio.VentaServiceImpl;
 
@@ -30,70 +32,121 @@ public class VentaController extends BaseControllerImpl<Venta, VentaServiceImpl>
 	@Autowired
 	private IVentaService IVentaService;
 	
-	@PostMapping("saveVenta")
-	public ResponseEntity<?> save(@RequestBody Venta venta) 
-	{
-
-
-System.err.println(venta);
-		List<DetalleVenta> det = venta.getDetalle().stream().filter(item-> item.getProducto().getId() != 0).collect(Collectors.toList());
-
-		venta.getDetalle().addAll(det);
-
-
-
-//	    List<Integer> list = new ArrayList<Integer>();
-//	    
-//        for(int i = 1; i< 10; i++){
-//            list.add(i);
-//        }
-//
-//        Stream<Integer> stream = list.stream();
-//        List<Integer> evenNumbersList = stream.filter(i -> i%2 == 0)
-//                                               .collect(Collectors.toList());
-//        System.out.print(evenNumbersList);
-        
-		
-
-		
-		//System.out.println( entity + " entity venta " + " detalle "  );
-		
-//		try {
-//			Venta resVenta = (Venta) IVentaService.addVenta(venta);
-//			System.err.println(resVenta);
-//			
-//		} catch (Exception e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//		
-//try {
-//	Venta ve = IVentaService.addVenta(venta);
-//	System.err.println(ve);
-//} catch (Exception e1) {
-//	// TODO Auto-generated catch block
-//	e1.printStackTrace();
-//}
-
-		try {
-			return ResponseEntity.status(HttpStatus.OK).body(IVentaService.addVenta(venta));
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{'error': 'Por favor intente mas tarde'}");
-		}
-	}
+	@Autowired
+	private IDetalleVentaService iDetalleVentaService;
 	
-	@GetMapping("saveVenta")
-	public ResponseEntity<?> newadd() 
+	@PostMapping(value = "saveVenta", produces = "application/json")	
+	public ResponseEntity<?> saveV(@RequestBody Venta venta ) 
 	{
-		
-		
-		
-		try {
-			return ResponseEntity.status(HttpStatus.OK).body("{'error': 'Buena por eso'}" );
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{'error': 'Por favor intente mas tarde'}");
-		}
+		System.err.println(venta);
+		return null;
 	}
+//	@PostMapping(value = "saveVenta", produces = "application/json")
+//	
+//	public ResponseEntity<?> save(@RequestBody List<DetalleVenta> detalle ) 
+//	{
+//System.err.println(detalle);
+//		try {
+//List<DetalleVenta> det = detalle.stream().filter(item-> item.getProducto().getId() != 0).collect(Collectors.toList());
+//
+//double totalVenta = detalle.stream()
+//.filter( item-> item.getProducto().getId() != 0 )
+//.mapToDouble(item -> item.getSubtotalDetalleVenta() )
+//.sum();
+//
+//Timestamp date = new Timestamp(new java.util.Date().getTime());
+//
+//	Venta v = new Venta();
+//	Cliente c = new Cliente();
+//	Usuario u = new Usuario();
+//
+//			v.setTotalVenta(totalVenta);
+//			v.setFechaVenta(date);
+//			c.setId(3);
+//			v.setCliente(c);
+//			u.setId(2);
+//			v.setUsuario(u);
+//
+//		
+//			Venta newVenta = IVentaService.addVenta(v);
+//
+//				det.forEach( (item) -> 
+//				{
+//					DetalleVenta dt = item;
+//					dt.setVenta(newVenta);
+//					
+//					DetalleVenta dye = iDetalleVentaService.addDetalle(dt);
+//
+//				});
+//
+//	
+//
+//			return ResponseEntity.status(HttpStatus.OK).body(newVenta);
+//		} catch (Exception e) {
+//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{'error': 'Por favor intente mas tarde'}");
+//		}
+//	}
+//	
+//	@GetMapping("buscarventaspagadas")
+//	public ResponseEntity<?> newadd() 
+//	{
+//		
+//		try {
+//		List<Venta> ve = IVentaService.findAll();
+//		List<DetalleVenta> de = iDetalleVentaService.findAll();
+//		List<DTOVentaPagos> dtoDatos = new ArrayList<DTOVentaPagos>();
+//		
+//		de.forEach( item-> 
+//		{
+//			
+//		});
+//		
+////		ve.forEach( item-> 
+////		{
+////			DTOVentaPagos dtoVentaPagos = new DTOVentaPagos();
+////			
+////			Cliente cl = item.getCliente();
+////			Usuario us = item.getUsuario();
+////			
+////			
+////			dtoVentaPagos.setIdVenta( item.getId() );
+////			dtoVentaPagos.setTotalVenta( item.getTotalVenta() );
+////			dtoVentaPagos.setFechaVenta( item.getFechaVenta().toString() );
+////			dtoVentaPagos.setCliente(cl);
+////			dtoVentaPagos.setUsuario(us);
+////			
+////			dtoDatos.add(dtoVentaPagos);
+////			
+////		});
+//		
+//		
+////		for (int i = 0; i < ve.size(); i++) 
+////		{
+////			for (int j = 0; j < de.size(); j++) 
+////			{
+////				if( ve.get(i).getId() == de.get(j).getVenta().getId() )
+////				{
+////					DTOVentaPagos dtoVentaPagos = new DTOVentaPagos();
+////					dtoVentaPagos.setIdVenta( ve.get(i).getId() );
+////					dtoVentaPagos.setTotalVenta( ve.get(i).getTotalVenta() );
+////				}
+////				
+////			}
+////			
+////		}
+//		
+//		
+//		
+//		
+//			
+//			System.err.println(ve);
+//					
+//			return ResponseEntity.status(HttpStatus.OK).body( dtoDatos );
+//		} catch (Exception e) {
+//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{'error': 'Por favor intente mas tarde "+e.getMessage()+" '}");
+//		}
+//	}
 
+	
 
 }

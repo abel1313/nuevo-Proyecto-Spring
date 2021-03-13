@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,7 +28,7 @@ implements IBaseController<E, Integer>{
 		try {
 			return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{'error': 'Por favor intente mas tarde'}");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{'error': 'Por favor intente mas tarde "+e.getMessage()+" '}");
 		}
 	}
 
@@ -47,11 +48,12 @@ implements IBaseController<E, Integer>{
 		try {
 			return ResponseEntity.status(HttpStatus.OK).body(service.save(entity));
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{'error': 'Por favor intente mas tarde'}");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{'error': 'Por favor intente mas tarde ' "+ e.getMessage()+" }");
 		}
 	}
 
 	@Override
+	@PutMapping("")
 	public ResponseEntity<?> update(@PathVariable Integer id,@RequestBody E entity) {
 		try {
 			return ResponseEntity.status(HttpStatus.OK).body(service.update(id, entity));

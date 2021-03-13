@@ -1,13 +1,14 @@
 package com.ferreteria.nuevo.proyecto.modelo;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,11 +34,28 @@ public class DetalleVenta  extends Base
 	
 	@Column( name = "precio_Detalle_Venta")
 	private double precioDetalleVenta;
-
-
 	
-	 @OneToOne
-	 @JoinColumn( name = "producto_Id")
-	 private Producto producto;
+//	 @ManyToOne
+//	 @JoinColumn( name = "venta_Id")
+//	 private Venta venta;
+	 
+//	 @OneToOne
+//	 @JoinColumn( name = "producto_Id")
+//	 private Producto producto;
+
+	   
+	 
+		@OneToOne 
+	    @JoinColumn(name="venta_id",referencedColumnName="id")
+	   	private Venta venta;
+	   
+		@OneToOne 
+	    @JoinColumn(name="producto_id",referencedColumnName="id")
+	   	private Producto producto;
+
+
+	   
+
+
 
 }

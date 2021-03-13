@@ -1,13 +1,14 @@
 package com.ferreteria.nuevo.proyecto.modelo;
 
+import java.util.Date;
+import java.util.List;
 
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
@@ -17,20 +18,21 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "clientes")
+@Table(name = "estatuscategoria")
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 @Setter
 @Getter
-public class Cliente extends Base
+public class EstatusCategoria extends Base
 {
-	
 	private static final long serialVersionUID = 1L;
 	
+	@Column( name = "nombre_Estatus_Categoria" )
+	private String nombreEstatusCategoria;
 	
-	@OneToOne
-	 @JoinColumn( name = "persona_Id", unique=true, nullable=false, updatable=false)
-	private Persona persona;
+	@OneToMany( mappedBy = "estatusCategoria")
+	@JsonManagedReference
+	private List<Categoria> categorias;
 
 }

@@ -1,10 +1,13 @@
 package com.ferreteria.nuevo.proyecto.modelo;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,15 +37,15 @@ public class Persona extends Base
 	private String paternoPersona;
 	
 	@Column(name = "fecha_Nacimientos_Persona")
-	private String fechaNacimientosPersona;
+	private String fechanacimientosPersona;
 	
 	@Column(name = "genero_Persona")
 	private String generoPersona;
 	
 	@Column(name = "correo_Electronico_Persona")
-	private String correoElectronicoPersona;
+	private String correoelectronicoPersona;
 	
-	
+
 /*
 	@ManyToOne(optional = false ,cascade = CascadeType.ALL ,fetch = FetchType.EAGER)
  *    @JoinColumn(name="id_DirecconFK", nullable=false)

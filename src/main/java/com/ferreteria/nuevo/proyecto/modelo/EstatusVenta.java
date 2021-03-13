@@ -1,11 +1,10 @@
 package com.ferreteria.nuevo.proyecto.modelo;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,25 +13,19 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "detalletemporal")
+@Table(name = "estatusventa")
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
 @Getter
+@Setter
 @ToString
-public class DetalleTemporal extends Base
-{
-	/**
+public class EstatusVenta extends Base
+{/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private double precio;
-	private double cantidad;
-	private double subtotal;
 	
-
-	
-	
-	
+	@Column( name = "nombre_estatus" )
+	private String nombreEstatus;
 
 }

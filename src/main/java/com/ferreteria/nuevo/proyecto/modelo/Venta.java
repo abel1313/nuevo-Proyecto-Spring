@@ -1,6 +1,7 @@
 package com.ferreteria.nuevo.proyecto.modelo;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +17,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -42,11 +46,20 @@ public class Venta extends Base
 	@Column( name = "fecha_Venta")
 	private Date fechaVenta;
 	
-	// @OneToMany( fetch = FetchType.LAZY, cascade = CascadeType.MERGE, mappedBy = "venta") de esta forma solo agrega venta pero al buscar las ventas sale error
 	
-	@OneToMany( fetch = FetchType.LAZY)
-	@JoinColumn( name = "venta_id" )
-	 private List<DetalleVenta> detalle;
+//	 @OneToMany( cascade = CascadeType.PERSIST)
+//	 @JoinColumn( name = "venta_Id")
+//	 private List<DetalleVenta> detalle;
+
+//	@ManyToMany
+//		@JoinTable(name = "detalleventa",
+//		    joinColumns = @JoinColumn(name = "venta_id"),
+//		    inverseJoinColumns = @JoinColumn(name = "producto_id")
+//		)
+
+//	@OneToMany( mappedBy = "venta" )
+//	@JsonManagedReference
+//	private List<DetalleVenta> listaDetalle;
 	
 	 @OneToOne
 	 @JoinColumn( name = "cliente_Id")
@@ -56,5 +69,8 @@ public class Venta extends Base
 	 @JoinColumn( name = "usuario_Id")
 	 private Usuario usuario;
 	
+	 @OneToMany( mappedBy = "venta")
+	 @JsonBackReference
+	 private List<DetalleVenta> listaDet;
 
 }
