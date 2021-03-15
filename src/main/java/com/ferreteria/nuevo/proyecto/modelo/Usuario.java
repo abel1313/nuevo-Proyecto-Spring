@@ -27,10 +27,10 @@ public class Usuario extends Base
 	private static final long serialVersionUID = 1L;
 
 	@Column( name = "nombre_Usuario")
-	private String nombreUsuario;
+	private String nombre_Usuario;
 	
 	@Column( name = "contra_Usuario")
-	private String contraUsuario;
+	private String contra_Usuario;
 	
 //	@OneToMany( mappedBy = "usuario")
 //	@JsonBackReference

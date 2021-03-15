@@ -31,14 +31,14 @@ public class Permiso extends Base
 	private static final long serialVersionUID = 1L;
 	
 
-//	@ManyToOne
-//	@JoinColumn( name = "usuario_id", referencedColumnName = "id")
-//	@JsonManagedReference
-//	private Usuario usuario;
+	@ManyToOne
+	@JoinColumn( name = "usuario_id", referencedColumnName = "id")
+	//@JsonManagedReference
+	private Usuario usuario;
 	
 	@ManyToOne
 	@JoinColumn( name = "menu_id", referencedColumnName = "id", insertable = false ,  updatable = false)
-	@JsonManagedReference
+	//@JsonManagedReference
 	private Menu menu;
 	
 	

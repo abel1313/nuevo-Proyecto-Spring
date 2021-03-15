@@ -9,6 +9,7 @@ import com.ferreteria.nuevo.proyecto.servicio.PersonaServiceImpl;
 
 @RestController
 @RequestMapping(path = "/ferreteria/person")
-public class PersonaController extends BaseControllerImpl<Persona, PersonaServiceImpl>{
+public class PersonaController extends BaseControllerImpl<Persona, PersonaServiceImpl>
+{
 
 }

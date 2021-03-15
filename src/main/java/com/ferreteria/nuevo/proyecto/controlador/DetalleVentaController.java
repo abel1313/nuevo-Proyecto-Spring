@@ -53,7 +53,7 @@ public class DetalleVentaController extends BaseControllerImpl<DetalleVenta, Det
 		Cliente c = det.get(0).getVenta().getCliente();
 		Usuario u = new Usuario(); // det.get(0).getVenta().getUsuario();
 	
-		System.err.println(c.getId());
+		
 		
 				v.setTotalVenta(totalVenta);
 				v.setFechaVenta(date);
