@@ -15,7 +15,11 @@ public interface IProductoService extends IBaseService<Producto, Integer>
 	
 	public boolean codigoBarra(@PathVariable String codigo)throws Exception;
 	
+	public boolean existsCodigoBarraEditar(@PathVariable String codigo, @PathVariable int idProducto)throws Exception;
+	
 	public List<Producto> buscarByCodigoOrNombreService(@PathVariable String codigo)throws Exception;
+	
+	public Producto updateProducto(@RequestBody Producto producto)throws Exception;
 	
 
 }

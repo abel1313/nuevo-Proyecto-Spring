@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import com.ferreteria.nuevo.proyecto.modelo.Proveedor;
 
 @Repository
-public interface IProveedorRepository extends BaseRepository<Proveedor, Integer>{
-
+public interface IProveedorRepository extends BaseRepository<Proveedor, Integer>
+{
+	
 }

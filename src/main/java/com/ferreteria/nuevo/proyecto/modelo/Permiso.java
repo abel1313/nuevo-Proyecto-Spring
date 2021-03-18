@@ -37,7 +37,7 @@ public class Permiso extends Base
 	private Usuario usuario;
 	
 	@ManyToOne
-	@JoinColumn( name = "menu_id", referencedColumnName = "id", insertable = false ,  updatable = false)
+	@JoinColumn( name = "menu_id", referencedColumnName = "id")
 	//@JsonManagedReference
 	private Menu menu;
 	
