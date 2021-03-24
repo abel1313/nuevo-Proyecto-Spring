@@ -2,8 +2,13 @@ package com.ferreteria.nuevo.proyecto.modelo;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -36,14 +41,8 @@ public class Persona extends Base
 	@Column(name = "paterno_Persona")
 	private String paternoPersona;
 	
-	@Column(name = "fecha_Nacimientos_Persona")
-	private String fechanacimientosPersona;
-	
-	@Column(name = "genero_Persona")
-	private String generoPersona;
-	
-	@Column(name = "correo_Electronico_Persona")
-	private String correoelectronicoPersona;
+	@Column(name = "telefono_persona")
+	private String telefonoPersona;
 	
 
 /*

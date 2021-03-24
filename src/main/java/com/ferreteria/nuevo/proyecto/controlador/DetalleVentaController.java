@@ -76,8 +76,7 @@ public class DetalleVentaController extends BaseControllerImpl<DetalleVenta, Det
 					});
 	
 	
-	
-System.err.println(totalVenta);
+
 //System.err.println(det.size());
 
 

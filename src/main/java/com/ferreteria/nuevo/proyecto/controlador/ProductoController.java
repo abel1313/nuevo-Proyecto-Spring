@@ -83,11 +83,11 @@ extends BaseControllerImpl<Producto, ProductoServiceImpl>
 			
 			if(codigo.equals("1"))
 			{
-				System.err.println("Entro en 1");
+				
 				return ResponseEntity.status(HttpStatus.OK).body(iProductoService.findAll());
 			}else
 			{
-				System.err.println("Entro en 0");
+				
 				return ResponseEntity.status(HttpStatus.OK).body(iProductoService.buscarByCodigoOrNombreService(codigo));
 			}
 			

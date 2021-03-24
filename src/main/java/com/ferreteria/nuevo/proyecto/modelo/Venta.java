@@ -1,17 +1,11 @@
 package com.ferreteria.nuevo.proyecto.modelo;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -19,7 +13,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -47,6 +40,11 @@ public class Venta extends Base
 	private Date fechaVenta;
 	
 	
+	@OneToMany(mappedBy = "venta")
+	@JsonBackReference
+	private List<Pedido> listPedidos;
+	
+	
 //	 @OneToMany( cascade = CascadeType.PERSIST)
 //	 @JoinColumn( name = "venta_Id")
 //	 private List<DetalleVenta> detalle;
@@ -69,8 +67,6 @@ public class Venta extends Base
 	 @JoinColumn( name = "usuario_Id")
 	 private Usuario usuario;
 	
-	 @OneToMany( mappedBy = "venta")
-	 @JsonBackReference
-	 private List<DetalleVenta> listaDet;
+
 
 }

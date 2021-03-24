@@ -22,4 +22,6 @@ public interface IProductoService extends IBaseService<Producto, Integer>
 	public Producto updateProducto(@RequestBody Producto producto)throws Exception;
 	
 
+	
+
 }

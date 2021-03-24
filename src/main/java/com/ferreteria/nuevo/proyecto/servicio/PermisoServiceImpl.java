@@ -1,5 +1,7 @@
 package com.ferreteria.nuevo.proyecto.servicio;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,18 @@ public class PermisoServiceImpl extends BaseServiceImpl<Permiso, Integer> implem
 	public PermisoServiceImpl(BaseRepository<Permiso, Integer> baseRepository) {
 		super(baseRepository);
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public List<Integer> listPermisos( int indUsuario ) throws Exception {
+		try {
+			
+			return iPermisosRepository.listaPermisos( indUsuario );
+			
+		} catch (Exception e) {
+			
+			throw new Exception(e.getMessage());
+		}
 	}
 
 }
