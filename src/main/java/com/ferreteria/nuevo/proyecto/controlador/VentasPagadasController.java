@@ -24,14 +24,17 @@ public class VentasPagadasController extends BaseControllerImpl<VentasPagadas, V
 	private IVentasPagadasService iVentasPagadasService;
 	
 	@PostMapping("guardarventapagada")
-	public ResponseEntity<?> savePago(@RequestBody VentasPagadas ventapagada) {
+	public ResponseEntity<?> savePago(@RequestBody VentasPagadas ventasPagadas) {
 		try {
 
+		System.err.println(ventasPagadas + " ventapagada");
+		System.err.println(ventasPagadas.getEstatusVenta().getId() + " estatus");
 		
+		System.err.println(ventasPagadas.getVenta().getId() + " venta");
 	// 	Timestamp date = new Timestamp(new java.util.Date().getTime());
 
 			
-			return  ResponseEntity.status(HttpStatus.OK).body(iVentasPagadasService .save(ventapagada));
+			return  ResponseEntity.status(HttpStatus.OK).body(iVentasPagadasService .save(ventasPagadas));
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{'error': 'Por favor intente mas tarde ' "+ e.getMessage()+" }");
 		}
