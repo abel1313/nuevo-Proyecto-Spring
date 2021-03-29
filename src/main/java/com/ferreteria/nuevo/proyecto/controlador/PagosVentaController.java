@@ -2,15 +2,9 @@ package com.ferreteria.nuevo.proyecto.controlador;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.DoubleStream;
-import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,13 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ferreteria.nuevo.proyecto.DTO.DTOPagoReporte;
 import com.ferreteria.nuevo.proyecto.DTO.DTOVentaPagos;
 import com.ferreteria.nuevo.proyecto.modelo.Cliente;
 import com.ferreteria.nuevo.proyecto.modelo.PagosVenta;
-import com.ferreteria.nuevo.proyecto.modelo.Persona;
 import com.ferreteria.nuevo.proyecto.modelo.Usuario;
 import com.ferreteria.nuevo.proyecto.modelo.Venta;
 import com.ferreteria.nuevo.proyecto.modelo.VentasPagadas;
@@ -64,8 +57,31 @@ public class PagosVentaController extends BaseControllerImpl<PagosVenta, PagosVe
 //		
 		Timestamp date = new Timestamp(new java.util.Date().getTime());
 		pago.setFechaPago(date);
+		PagosVenta pagoVenta = iPagosVentaService .save(pago);
+		
+		List<PagosVenta> listaPagoReporte =  iPagosVentaService.findAll();
+		
+		double totalPagosReporte = listaPagoReporte.stream().filter( item-> item.getVenta().getId() == pagoVenta.getVenta().getId() )
+				.mapToDouble( item-> item.getPagoVenta() )
+				.sum();
+		
+		Venta ventaReporte = iVentaService.findById(pagoVenta.getVenta().getId());
+		
+
+		double adeudoReporte = ventaReporte.getTotalVenta() - totalPagosReporte;
+		
+		DTOPagoReporte  dtoPagoReporte = new DTOPagoReporte();
+		Cliente cli = ventaReporte.getCliente();
+		String nombreCliente = cli.getPersona().getNombrePersona() + " " + cli.getPersona().getPaternoPersona() +" "+ cli.getPersona().getMaternoPersona();
+		dtoPagoReporte.setTotalVenta( ventaReporte.getTotalVenta() );
+		dtoPagoReporte.setPagoRealizado( pagoVenta.getPagoVenta() );
+		dtoPagoReporte.setAdeudo( adeudoReporte );
+		dtoPagoReporte.setNombreCliente( nombreCliente );
+		dtoPagoReporte.setFechaDeposito( ventaReporte.getFechaVenta().toString() );
+		dtoPagoReporte.setTotalPagos(totalPagosReporte);
+		
 			
-			return  ResponseEntity.status(HttpStatus.OK).body(iPagosVentaService .save(pago));
+			return  ResponseEntity.status(HttpStatus.OK).body(dtoPagoReporte);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{'error': 'Por favor intente mas tarde ' "+ e.getMessage()+" }");
 		}
