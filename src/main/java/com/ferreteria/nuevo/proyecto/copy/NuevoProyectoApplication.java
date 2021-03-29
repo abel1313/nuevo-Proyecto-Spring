@@ -3,11 +3,13 @@ package com.ferreteria.nuevo.proyecto.copy;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+
+
+//@SpringBootApplication
 public class NuevoProyectoApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(NuevoProyectoApplication.class, args);
-	}
+//	public static void main(String[] args) {
+//		SpringApplication.run(NuevoProyectoApplication.class, args);
+//	}
 
 }
