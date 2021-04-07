@@ -142,7 +142,7 @@ public class PagosVentaController extends BaseControllerImpl<PagosVenta, PagosVe
 	public ResponseEntity<?> mostrarcliente( @PathVariable("nombrecliente") String nombreCliente ) {
 		try {
 		Timestamp date = new Timestamp(new java.util.Date().getTime());
-		System.err.println(nombreCliente + " Nombre cliente");
+		
 		List<PagosVenta> listPagos = iPagosVentaService.findByNombreClienteService(nombreCliente);
 
 

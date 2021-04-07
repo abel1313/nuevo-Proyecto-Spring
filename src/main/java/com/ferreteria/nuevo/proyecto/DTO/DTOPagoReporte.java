@@ -1,8 +1,5 @@
 package com.ferreteria.nuevo.proyecto.DTO;
 
-import com.ferreteria.nuevo.proyecto.modelo.Cliente;
-import com.ferreteria.nuevo.proyecto.modelo.Usuario;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +13,7 @@ import lombok.ToString;
 @ToString
 public class DTOPagoReporte 
 {
+	private int id;
 	private String nombreCliente;
 	private double totalVenta;
 	private double pagoRealizado;

@@ -7,10 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ferreteria.nuevo.proyecto.modelo.Producto;
-import com.ferreteria.nuevo.proyecto.modelo.Proveedor;
+import com.ferreteria.nuevo.proyecto.modelo.Proveedores;
 import com.ferreteria.nuevo.proyecto.repository.BaseRepository;
 import com.ferreteria.nuevo.proyecto.repository.IProductoRepository;
-import com.ferreteria.nuevo.proyecto.repository.IProveedorRepository;
+
+import com.ferreteria.nuevo.proyecto.repository.IProveedoresRepository;
 
 @Service
 public class ProductoServiceImpl extends BaseServiceImpl<Producto, Integer> 
@@ -20,7 +21,7 @@ implements IProductoService
 	private IProductoRepository iProductoRepository;
 	
 	@Autowired
-	private IProveedorRepository iProveedorRepository;
+	private IProveedoresRepository iProveedorRepository;
 
 	public ProductoServiceImpl(BaseRepository<Producto, Integer> baseRepository) {
 		super(baseRepository);
@@ -82,9 +83,9 @@ implements IProductoService
 	public Producto updateProducto(Producto producto) throws Exception {
 		try {
 			
-			Optional<Proveedor> findProveedor = iProveedorRepository.findById( producto.getProveedor().getId() );
+			Optional<Proveedores> findProveedor = iProveedorRepository.findById( producto.getProveedor().getId() );
 			
-			Proveedor pro = findProveedor.get();
+			Proveedores pro = findProveedor.get();
 			producto.setProveedor(pro);
 			
 			Optional<Producto> findProducto = iProductoRepository.findById( producto.getId() );

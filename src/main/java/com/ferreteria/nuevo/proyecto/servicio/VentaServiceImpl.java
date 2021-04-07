@@ -1,8 +1,12 @@
 package com.ferreteria.nuevo.proyecto.servicio;
 
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.ferreteria.nuevo.proyecto.modelo.Venta;
 import com.ferreteria.nuevo.proyecto.repository.BaseRepository;
@@ -28,6 +32,27 @@ implements IVentaService
 			
 		} catch (Exception e) {
 			
+			throw new Exception(e.getMessage());
+		}
+	}
+
+	@Override
+	public List<Venta> findByFechaInicioAndFechaFin( @PathVariable String fechaInicio, @PathVariable String fechFin ) throws Exception {
+		try {
+			
+			return iVentaRepository.findByFechaInicioAndFechaFin( fechaInicio, fechFin );
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+
+	@Override
+	public List<Venta> findByFechaInicioAndFechaFinCliente(String fechaInicio, String fechFin, int id)
+			throws Exception {
+		try {
+			
+			return iVentaRepository.findByFechaInicioAndFechaFinCliente(fechaInicio, fechFin, id);
+		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
 	}

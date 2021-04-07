@@ -1,21 +1,11 @@
 package com.ferreteria.nuevo.proyecto.modelo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,7 +17,6 @@ import lombok.ToString;
 @Table(name = "productos")
 @NoArgsConstructor
 @AllArgsConstructor
-
 @Setter
 @Getter
 @ToString
@@ -70,7 +59,7 @@ public class Producto extends Base
 		   	
 		   	@ManyToOne( cascade = CascadeType.MERGE)
 		   	@JoinColumn(name = "proveedor_id")
-		   	private Proveedor proveedor;
+		   	private Proveedores proveedor;
 		   	
 
 		   	

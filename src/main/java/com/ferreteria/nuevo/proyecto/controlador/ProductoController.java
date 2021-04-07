@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ferreteria.nuevo.proyecto.modelo.Producto;
-import com.ferreteria.nuevo.proyecto.modelo.Proveedor;
 import com.ferreteria.nuevo.proyecto.servicio.IProductoService;
-import com.ferreteria.nuevo.proyecto.servicio.IProveedorService;
+
+import com.ferreteria.nuevo.proyecto.servicio.IProveedoresService;
 import com.ferreteria.nuevo.proyecto.servicio.ProductoServiceImpl;
 
 
@@ -30,7 +30,7 @@ public class ProductoController
 extends BaseControllerImpl<Producto, ProductoServiceImpl> 
 {
 	@Autowired IProductoService iProductoService;
-	@Autowired IProveedorService iProveedorService;
+	@Autowired IProveedoresService iProveedorService;
 	
 	@PostMapping(path = "/guardarProducto")
 	public ResponseEntity<?> guardarProducto(@RequestBody Producto  producto) {
@@ -46,7 +46,7 @@ extends BaseControllerImpl<Producto, ProductoServiceImpl>
 	@GetMapping(path = "/buscarCodigo/{codigo}")
 	public ResponseEntity<?> guardarProducto(@PathVariable("codigo") String codigo) {
 		try {
-			System.err.println("Codigo barra "+ codigo);
+		
 			return ResponseEntity.status(HttpStatus.OK).body(iProductoService.codigoBarra(codigo));
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
