@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -29,6 +31,8 @@ public class Categoria extends Base
 {
 	private static final long serialVersionUID = 1L;
 	
+	@NotNull( message = "Este campo no debe ser null" )
+	@Size( min = 1, max = 25)
 	@Column( name = "nombre_Categoria" )
 	private String nombreCategoria;
 	

@@ -45,8 +45,6 @@ public class ClienteServiceImpl extends BaseServiceImpl<Cliente, Integer> implem
 	@Override
 	public Cliente updateCliente(Integer id, Cliente cli) throws Exception 
 	{
-		
-		
 		iPersonaRepository.deleteById(cli.getPersona().getId());
 		Persona p = iPersonaRepository.save(cli.getPersona());
 		Cliente c = new Cliente();

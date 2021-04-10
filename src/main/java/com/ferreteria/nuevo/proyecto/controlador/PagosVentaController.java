@@ -90,6 +90,75 @@ public class PagosVentaController extends BaseControllerImpl<PagosVenta, PagosVe
 	
 	
 	
+	
+	
+	
+	
+	
+	@GetMapping("buscarPagos")
+	public ResponseEntity<?> buscarPagos( ) {
+		try {
+			
+			List<PagosVenta> pagos = iPagosVentaService.buscarPagosVentaService();
+			
+		List<DTOVentaPagos> dtoVentasPagos = new ArrayList<DTOVentaPagos>();
+		pagos.forEach( item-> 
+		{
+				DTOVentaPagos dtoVentaPagos = new DTOVentaPagos();
+				Cliente c = item.getVenta().getCliente();
+				Usuario u = item.getVenta().getUsuario();
+				
+				dtoVentaPagos.setIdVenta( item.getVenta().getId() );
+				dtoVentaPagos.setTotalPagosVenta( item.getPagoVenta() );
+				dtoVentaPagos.setTotalVenta( item.getVenta().getTotalVenta() );
+				dtoVentaPagos.setTotalResta( dtoVentaPagos.getTotalVenta() - dtoVentaPagos.getTotalPagosVenta()  );
+				
+				dtoVentaPagos.setFechaVenta( item.getVenta().getFechaVenta().toString() );
+				dtoVentaPagos.setCliente( c );
+				dtoVentaPagos.setUsuario( u );
+				dtoVentasPagos.add(dtoVentaPagos);
+
+		});
+//		return  ResponseEntity.status(HttpStatus.OK).body( dtoVentasPagos );
+			return  ResponseEntity.status(HttpStatus.OK).body( dtoVentasPagos );
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{'error': 'Por favor intente mas tarde ' "+ e.getMessage()+" }");
+		}
+	}
+	
+	@GetMapping("mostrarUnPago/{buscarPago}")
+	public ResponseEntity<?> mostrarUnPago( @PathVariable("buscarPago") String buscarPago ) {
+		try {
+		
+			List<PagosVenta> pagosVenta = iPagosVentaService.findByClienteService( buscarPago );
+			
+		System.err.println(pagosVenta + " pagps");
+//		List<DTOVentaPagos> dtoVentasPagos = new ArrayList<DTOVentaPagos>();
+//		pagosVenta.forEach( item-> 
+//		{
+//				DTOVentaPagos dtoVentaPagos = new DTOVentaPagos();
+//				Cliente c = item.getVenta().getCliente();
+//				Usuario u = item.getVenta().getUsuario();
+//				
+//				dtoVentaPagos.setIdVenta( item.getVenta().getId() );
+//				dtoVentaPagos.setTotalPagosVenta( item.getPagoVenta() );
+//				dtoVentaPagos.setTotalVenta( item.getVenta().getTotalVenta() );
+//				dtoVentaPagos.setTotalResta( dtoVentaPagos.getTotalVenta() - dtoVentaPagos.getTotalPagosVenta()  );
+//				
+//				dtoVentaPagos.setFechaVenta( item.getVenta().getFechaVenta().toString() );
+//				dtoVentaPagos.setCliente( c );
+//				dtoVentaPagos.setUsuario( u );
+//				dtoVentasPagos.add(dtoVentaPagos);
+//
+//		});
+//		return  ResponseEntity.status(HttpStatus.OK).body( dtoVentasPagos );
+			return  ResponseEntity.status(HttpStatus.OK).body( pagosVenta );
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{'error': 'Por favor intente mas tarde ' "+ e.getMessage()+" }");
+		}
+	}
+	
+	
 	@GetMapping("mostrarpagosventa")
 	public ResponseEntity<?> mostrarPagos() {
 		try {
@@ -136,6 +205,18 @@ public class PagosVentaController extends BaseControllerImpl<PagosVenta, PagosVe
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{'error': 'Por favor intente mas tarde ' "+ e.getMessage()+" }");
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	@GetMapping("buscarcliente/{nombrecliente}")

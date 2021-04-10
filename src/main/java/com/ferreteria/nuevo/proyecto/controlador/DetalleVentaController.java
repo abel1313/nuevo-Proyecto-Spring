@@ -34,10 +34,7 @@ public class DetalleVentaController extends BaseControllerImpl<DetalleVenta, Det
 	@PostMapping("saveDetalle")
 	public ResponseEntity<?> save(@RequestBody List<DetalleVenta> detalle) throws Exception 
 	{
-
 	
-		
-		
 		try {
 	List<DetalleVenta> det = 
 			detalle
@@ -45,8 +42,6 @@ public class DetalleVentaController extends BaseControllerImpl<DetalleVenta, Det
 			filter
 			(item-> item.getProducto().getId() != 0)
 			.collect(Collectors.toList());
-	
-	System.err.println(det);
 	
 	double totalVenta = detalle.stream()
 	.filter( item-> item.getProducto().getId() != 0 )
@@ -57,14 +52,14 @@ public class DetalleVentaController extends BaseControllerImpl<DetalleVenta, Det
 	
 		Venta v = new Venta();
 		Cliente c = det.get(0).getVenta().getCliente();
-		Usuario u = new Usuario(); // det.get(0).getVenta().getUsuario();
+		Usuario u = det.get(0).getVenta().getUsuario(); // det.get(0).getVenta().getUsuario();
 		
 				v.setTotalVenta(totalVenta);
 				v.setFechaVenta(date);
 				
 				v.setCliente(c);
 				
-				u.setId(2);
+				
 				v.setUsuario(u);
 	
 			

@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,6 +32,8 @@ public class PagosVenta extends Base
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	@NotNull( message = "Este campo no debe estar vacío" )
+	@Min( 1 )
 	@Column( name = "pago" )
 	private double pagoVenta;
 	

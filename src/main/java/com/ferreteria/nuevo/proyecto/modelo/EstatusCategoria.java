@@ -5,6 +5,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -25,6 +27,8 @@ public class EstatusCategoria extends Base
 {
 	private static final long serialVersionUID = 1L;
 	
+	@NotNull( message = "Este campo no debe estar vacío" )
+	@Min( 2 )
 	@Column( name = "nombre_Estatus_Categoria" )
 	private String nombreEstatusCategoria;
 	
